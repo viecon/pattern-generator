@@ -117,6 +117,15 @@ function conway() {
     }
   }
 }
+
+function doConway(x) {
+  const intervalId = setInterval(conway, 100);
+  setTimeout(() => {
+    clearInterval(intervalId);
+    console.log("Interval stopped");
+  }, x);
+}
+
 // Copy ASCII Art to Clipboard
 function copyPattern() {
   const asciiText = asciiOutput.textContent;
