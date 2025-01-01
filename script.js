@@ -103,6 +103,15 @@ function conway() {
           cell.classList.add("active");
         }
       }
+      cell.addEventListener("mousedown", () => {
+        cell.classList.toggle("active");
+      });
+      // Toggle on mouseover if mouse is held down
+      cell.addEventListener("mouseover", () => {
+        if (isMouseDown) {
+          cell.classList.toggle("active");
+        }
+      });
       grid.appendChild(cell);
     }
   }
