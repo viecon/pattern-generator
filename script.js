@@ -45,6 +45,7 @@ function generateGrid() {
     }
   }
   oldX = x;
+  asciiHeader.style.display = "block";
   asciiOutput.textContent = "";
 }
 
@@ -53,6 +54,7 @@ function clearGrid() {
   document.querySelectorAll("#grid div").forEach((cell) => {
     cell.classList.remove("active");
   });
+  asciiHeader.style.display = "block";
   asciiOutput.textContent = "";
 }
 
@@ -72,7 +74,7 @@ function generateASCII() {
     row += cells[i * x + x - 1].classList.contains("active") ? "1" : "0";
     asciiArt += "  { " + row + (i == 7 ? " }" : " },") + "\n";
   }
-
+  asciiHeader.style.display = "none";
   asciiOutput.textContent = asciiArt + "};";
 }
 
@@ -115,6 +117,36 @@ function conway() {
     }
   }
 }
+// Copy ASCII Art to Clipboard
+function copyPattern() {
+  const asciiText = asciiOutput.textContent;
 
+  if (!asciiText) {
+    showNotification("No Pattern to copy!", "error");
+    return;
+  }
+
+  navigator.clipboard
+    .writeText(asciiText)
+    .then(() => showNotification("Pattern copied to clipboard!", "success"))
+    .catch((err) => {
+      console.error("Failed to copy Pattern:", err);
+      showNotification("Failed to copy Pattern. Please try again.", "error");
+    });
+}
+function showNotification(message, type) {
+  const notification = document.getElementById("copyNotification");
+  notification.textContent = message;
+  notification.className = "copy-notification"; // Reset classes
+  if (type === "error") {
+    notification.classList.add("error");
+  }
+  notification.style.opacity = "1";
+
+  // Hide after 2 seconds
+  setTimeout(() => {
+    notification.style.opacity = "0";
+  }, 2000);
+}
 // Initial Grid Load
 generateGrid();

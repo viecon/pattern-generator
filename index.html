@@ -3,26 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pattern generator</title>
+    <title>Pattern Generator</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
-      <div>
-        <div class="grid-container">
-          <div id="grid" class="grid"></div>
-        </div>
-        <div class="set-x">
-          Set X = <input type="number" id="xValue" min="8" value="32" />
-          <button onclick="generateGrid()">Change size</button>
-          <button onclick="clearGrid()">Clear</button>
-          <button onclick="generateASCII()">Generate pattern</button>
-          <button onclick="conway()">??</button>
-        </div>
-        <div id="asciiOutput" class="ascii-output"></div>
+      <h1>🎨 Pattern Generator</h1>
+      <div class="controls">
+        <label>
+          Set X =
+          <input type="number" id="xValue" min="8" value="32" />
+        </label>
+        <button onclick="generateGrid()">🔄 Change Size</button>
+        <button onclick="clearGrid()">🧹 Clear</button>
+        <button onclick="generateASCII()">🪄 Generate Pattern</button>
+        <button onclick="conway()">🌱 ???</button>
       </div>
-    </div>
 
+      <div class="grid-container">
+        <div id="grid" class="grid"></div>
+      </div>
+
+      <div class="ascii-container">
+        <h2 id="asciiHeader">📝 ASCII Pattern</h2>
+        <div id="asciiOutput" class="ascii-output">Ascii</div>
+        <button onclick="copyPattern()" class="copy-button" title="Copy">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+          >
+            <path
+              fill="currentColor"
+              d="M19 3H9C7.9 3 7 3.9 7 5v11c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H9V5h10v11zM5 7H3v14c0 1.1.9 2 2 2h14v-2H5V7z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div id="copyNotification" class="copy-notification"></div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

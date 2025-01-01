@@ -1,58 +1,169 @@
-.container {
+/* Global Styles */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f0f4f8, #d9e3f0);
+  color: #333;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  min-height: 100vh;
 }
 
-.grid-container {
+/* Main Container */
+.container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* Headings */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #4a4e69;
+}
+
+h2 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #4a4e69;
+}
+
+/* Controls Section */
+.controls {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  border: 2px solid black;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.controls label {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.controls input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.controls button {
+  background-color: #6a82fb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.controls button:hover {
+  background-color: #5a72db;
+}
+
+/* Grid Section */
+.grid-container {
+  margin-top: 20px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
   padding: 10px;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  overflow-y: hidden; /* Prevent vertical scrolling */
+  overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
-  max-width: 90vw;
-  max-height: 80vh;
-  margin-top: 10px;
+  background: #fafafa;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .grid {
   display: grid;
   gap: 2px;
-  border: 2px solid black;
   margin-top: 10px;
 }
 
 .grid div {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
   background-color: white;
-  user-select: none; /* Prevent text selection */
-  -webkit-user-drag: none; /* Prevent drag on Safari */
-  -webkit-user-select: none; /* Older Safari versions */
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .grid div.active {
-  background-color: rgb(0, 0, 0);
+  background-color: #6a82fb;
 }
 
-.set-x {
+/* ASCII Section */
+.ascii-container {
+  position: relative;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
   margin-top: 20px;
-}
-
-.set-x button {
-  margin-left: 5px;
+  background-color: #f9f9f9;
+  font-family: monospace;
+  overflow-x: auto;
+  white-space: pre;
+  max-width: 90vw;
+  max-height: 200px;
+  text-align: left;
 }
 
 .ascii-output {
-  margin-top: 20px;
-  white-space: pre;
-  font-family: monospace;
-  border: 1px solid #ccc;
-  padding: 10px;
-  background: #f9f9f9;
+  padding-right: 30px;
+}
+
+.copy-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-button svg {
+  width: 16px;
+  height: 16px;
+  fill: #333;
+}
+
+.copy-button:hover {
+  background-color: #ccc;
+}
+
+.copy-notification {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #4caf50;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  max-width: fit-content;
+}
+
+.copy-notification.error {
+  background-color: #f44336;
 }
