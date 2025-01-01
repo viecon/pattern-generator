@@ -45,6 +45,7 @@ function generateGrid() {
     }
   }
   oldX = x;
+  asciiOutput.textContent = "";
 }
 
 // Clear Grid Function
