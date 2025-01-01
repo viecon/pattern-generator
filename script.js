@@ -70,7 +70,7 @@ function generateASCII() {
       row += cell.classList.contains("active") ? "1, " : "0, ";
     }
     row += cells[i * x + x - 1].classList.contains("active") ? "1" : "0";
-    asciiArt += "  {" + row + (i == 7 ? "}" : "},") + "\n";
+    asciiArt += "  { " + row + (i == 7 ? " }" : " },") + "\n";
   }
 
   asciiOutput.textContent = asciiArt + "};";
