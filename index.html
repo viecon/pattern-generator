@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pattern generator</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2px;
+            border: 2px solid black;
+            margin-top: 10px;
+        }
+
+        .grid div {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            background-color: white;
+        }
+
+        .grid div.active {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .set-x {
+            margin-top: 20px;
+        }
+
+        .set-x button {
+            margin-left: 5px;
+        }
+
+        .ascii-output {
+            margin-top: 20px;
+            white-space: pre;
+            font-family: monospace;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <div id="grid" class="grid"></div>
+            <div class="set-x">
+                Set X = <input type="number" id="xValue" min="1" value="32">
+                <button onclick="generateGrid()">Change size</button>
+                <button onclick="clearGrid()">Clear</button>
+                <button onclick="generateASCII()">Generate pattern</button>
+            </div>
+            <div id="asciiOutput" class="ascii-output"></div>
+        </div>
+    </div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const xInput = document.getElementById('xValue');
+        const asciiOutput = document.getElementById('asciiOutput');
+        let isMouseDown = false; // Track mouse button state
+        let oldX = 32; // Default value
+
+        // Handle mouse events for sliding effect
+        grid.addEventListener('mousedown', () => (isMouseDown = true));
+        grid.addEventListener('mouseup', () => (isMouseDown = false));
+        grid.addEventListener('mouseleave', () => (isMouseDown = false));
+
+        // Generate Grid Function
+        function generateGrid() {
+            const x = parseInt(xInput.value, 10) || 1;
+            oldGridState = Array.from(document.querySelectorAll('#grid div')).map(cell => cell.classList.contains('active'));
+            grid.innerHTML = ''; // Clear the grid
+            grid.style.gridTemplateColumns = `repeat(${x}, 1fr)`;
+            grid.style.gridTemplateRows = `repeat(8, 1fr)`;
+            console.log(oldGridState);
+            console.log(oldX);
+            for (let i = 0; i < 8; i++) {
+                for (let j = 0; j < x; j++) {
+                    const cell = document.createElement('div');
+                    if (j < oldX && oldGridState[i * oldX + j]) {
+                        cell.classList.add('active');
+                    }
+                    // Toggle on click
+                    cell.addEventListener('click', () => {
+                        cell.classList.toggle('active');
+                    });
+
+                    // Toggle on mouseover if mouse is held down
+                    cell.addEventListener('mouseover', () => {
+                        if (isMouseDown) {
+                            cell.classList.toggle('active');
+                        }
+                    });
+
+                    grid.appendChild(cell);
+                }
+            }
+            oldX = x;
+        }
+
+        // Clear Grid Function
+        function clearGrid() {
+            document.querySelectorAll('#grid div').forEach(cell => {
+                cell.classList.remove('active');
+            });
+            asciiOutput.textContent = '';
+        }
+
+        // Generate ASCII Art Function
+        function generateASCII() {
+            const x = parseInt(xInput.value, 10) || 1;
+            let asciiArt = 'byte pattern[HEIGHT][WIDTH] = {    // remember to replace the #define WIDTH with the actual value\n';
+            const cells = document.querySelectorAll('#grid div');
+
+            for (let i = 0; i < 8; i++) {
+                let row = '';
+                for (let j = 0; j < x - 1; j++) {
+                    const cell = cells[i * x + j];
+                    row += cell.classList.contains('active') ? '1, ' : '0, ';
+                }
+                row += cells[i * x + x - 1].classList.contains('active') ? '1' : '0';
+                asciiArt += '{' + row + '}' + '\n';
+            }
+
+            asciiOutput.textContent = asciiArt + '};';
+        }
+
+        // Initial Grid Load
+        generateGrid();
+    </script>
+</body>
+</html>
