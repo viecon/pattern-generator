@@ -89,11 +89,9 @@ function conway() {
       const cell = document.createElement("div");
       let alive = 0;
       for (let k = 0; k < 8; k++) {
-        let ni = i + diry[k];
-        let nj = j + dirx[k];
-        if (ni >= 0 && ni < 8 && nj >= 0 && nj < x) {
-          alive += gridState[ni * x + nj];
-        }
+        let ni = (i + diry[k] + 8) % 8;
+        let nj = (j + dirx[k] + x) % x;
+        alive += gridState[ni * x + nj];
       }
       if (gridState[i * x + j]) {
         if (alive == 2 || alive == 3) {
