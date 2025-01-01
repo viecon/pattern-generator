@@ -60,7 +60,7 @@ function clearGrid() {
 function generateASCII() {
   const x = oldX;
   let asciiArt =
-    "byte pattern[HEIGHT][WIDTH] = {    // remember to replace the #define WIDTH with the actual value\n";
+    "byte pattern[HEIGHT][WIDTH] = {  // remember to replace the #define WIDTH with the actual value\n";
   const cells = document.querySelectorAll("#grid div");
 
   for (let i = 0; i < 8; i++) {
