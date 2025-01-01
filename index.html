@@ -10,14 +10,20 @@
     <div class="container">
       <h1>🎨 Pattern Generator</h1>
       <div class="controls">
-        <label>
-          Set X =
-          <input type="number" id="xValue" min="8" value="32" />
-        </label>
-        <button onclick="generateGrid()">🔄 Change Size</button>
-        <button onclick="clearGrid()">🧹 Clear</button>
-        <button onclick="generateASCII()">🪄 Generate Pattern</button>
-        <button onclick="conway()">🌱 ???</button>
+        <label for="xValue" class="controls-label">Set X:</label>
+        <input
+          type="number"
+          id="xValue"
+          min="8"
+          value="32"
+          oninput="handleGridInput()"
+          class="controls-input"
+        />
+        <div class="controls-buttons">
+          <button onclick="clearGrid()">🧹 Clear</button>
+          <button onclick="generateASCII()">🪄 Generate Pattern</button>
+          <button onclick="conway()">🌱 ???</button>
+        </div>
       </div>
 
       <div class="grid-container">
@@ -25,8 +31,8 @@
       </div>
 
       <div class="ascii-container">
-        <h2 id="asciiHeader">📝 ASCII Pattern</h2>
-        <div id="asciiOutput" class="ascii-output">Ascii</div>
+        <h2 id="asciiHeader">📝 Output Pattern</h2>
+        <div id="asciiOutput" class="ascii-output"></div>
         <button onclick="copyPattern()" class="copy-button" title="Copy">
           <svg
             xmlns="http://www.w3.org/2000/svg"

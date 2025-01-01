@@ -11,6 +11,14 @@ grid.addEventListener("mouseleave", () => (isMouseDown = false));
 grid.addEventListener("dragstart", (event) => {
   event.preventDefault();
 });
+
+function handleGridInput() {
+  const xValue = document.getElementById("xValue").value;
+  if (xValue >= 8) {
+    generateGrid();
+  }
+}
+
 // Generate Grid Function
 function generateGrid() {
   let x = parseInt(xInput.value, 10);
@@ -25,6 +33,8 @@ function generateGrid() {
   grid.style.gridTemplateRows = `repeat(8, 1fr)`;
   console.log(oldGridState);
   console.log(oldX);
+  const gapSize = xValue > 20 ? "2px" : xValue > 10 ? "4px" : "6px";
+  grid.style.gap = gapSize;
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < x; j++) {
       const cell = document.createElement("div");
@@ -45,7 +55,13 @@ function generateGrid() {
     }
   }
   oldX = x;
-  asciiHeader.style.display = "block";
+  const asciiContainer = document.querySelector(".ascii-container");
+  if (!document.getElementById("asciiHeader")) {
+    const header = document.createElement("h2");
+    header.id = "asciiHeader";
+    header.textContent = "📝 Output Pattern";
+    asciiContainer.prepend(header);
+  }
   asciiOutput.textContent = "";
 }
 
@@ -54,7 +70,13 @@ function clearGrid() {
   document.querySelectorAll("#grid div").forEach((cell) => {
     cell.classList.remove("active");
   });
-  asciiHeader.style.display = "block";
+  const asciiContainer = document.querySelector(".ascii-container");
+  if (!document.getElementById("asciiHeader")) {
+    const header = document.createElement("h2");
+    header.id = "asciiHeader";
+    header.textContent = "📝 Output Pattern";
+    asciiContainer.prepend(header);
+  }
   asciiOutput.textContent = "";
 }
 
@@ -74,7 +96,10 @@ function generateASCII() {
     row += cells[i * x + x - 1].classList.contains("active") ? "1" : "0";
     asciiArt += "  { " + row + (i == 7 ? " }" : " },") + "\n";
   }
-  asciiHeader.style.display = "none";
+  const asciiHeader = document.getElementById("asciiHeader");
+  if (asciiHeader) {
+    asciiHeader.remove();
+  }
   asciiOutput.textContent = asciiArt + "};";
 }
 
@@ -122,7 +147,6 @@ function doConway(x) {
   const intervalId = setInterval(conway, 100);
   setTimeout(() => {
     clearInterval(intervalId);
-    console.log("Interval stopped");
   }, x);
 }
 

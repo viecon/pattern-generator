@@ -39,37 +39,62 @@ h2 {
 .controls {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
+  background-color: #f4f6fc;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.controls label {
+.controls-label {
+  font-size: 16px;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  color: #333;
 }
 
-.controls input[type="number"] {
-  width: 60px;
-  padding: 5px;
+.controls-input {
+  width: 70px;
+  padding: 6px;
+  font-size: 14px;
+  text-align: center;
   border: 1px solid #ccc;
   border-radius: 4px;
+  transition: border-color 0.2s;
 }
 
-.controls button {
+.controls-input:focus {
+  outline: none;
+  border-color: #6a82fb;
+  box-shadow: 0 0 5px rgba(106, 130, 251, 0.5);
+}
+
+.controls-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.controls-buttons button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
   background-color: #6a82fb;
   color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
   cursor: pointer;
-  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
-.controls button:hover {
+.controls-buttons button:hover {
   background-color: #5a72db;
+}
+
+.controls-buttons button:active {
+  background-color: #4a62cb;
 }
 
 /* Grid Section */
@@ -83,23 +108,52 @@ h2 {
   white-space: nowrap;
   background: #fafafa;
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 90vw;
+  max-height: 80vh;
+  margin-top: 10px;
 }
-
 .grid {
   display: grid;
-  gap: 2px;
+  gap: 1px; /* Adjust gap for better appearance with smaller grids */
   margin-top: 10px;
+  transition: grid-template-columns 0.3s ease, grid-template-rows 0.3s ease;
 }
 
 .grid div {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #ccc;
   background-color: white;
   user-select: none;
   -webkit-user-drag: none;
-  -webkit-user-select: none;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s;
+}
+
+.grid div.active {
+  background-color: #6a82fb;
+  border-color: #5a72db;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .controls-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .grid div {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .grid div.active {
@@ -119,7 +173,7 @@ h2 {
   white-space: pre;
   max-width: 90vw;
   max-height: 200px;
-  text-align: left;
+  text-align: start;
 }
 
 .ascii-output {
@@ -130,8 +184,8 @@ h2 {
   position: absolute;
   top: 5px;
   right: 5px;
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   background-color: #ddd;
   border: none;
   border-radius: 50%;
@@ -142,8 +196,8 @@ h2 {
 }
 
 .copy-button svg {
-  width: 16px;
-  height: 16px;
+  width: 28px;
+  height: 28px;
   fill: #333;
 }
 
