@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pattern generator</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <div>
-            <div id="grid" class="grid"></div>
-            <div class="set-x">
-                Set X = <input type="number" id="xValue" min="1" value="32">
-                <button onclick="generateGrid()">Change size</button>
-                <button onclick="clearGrid()">Clear</button>
-                <button onclick="generateASCII()">Generate pattern</button>
-            </div>
-            <div id="asciiOutput" class="ascii-output"></div>
+      <div>
+        <div id="grid" class="grid"></div>
+        <div class="set-x">
+          Set X = <input type="number" id="xValue" min="8" value="32" />
+          <button onclick="generateGrid()">Change size</button>
+          <button onclick="clearGrid()">Clear</button>
+          <button onclick="generateASCII()">Generate pattern</button>
+          <button onclick="conway()">??</button>
         </div>
+        <div id="asciiOutput" class="ascii-output"></div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
