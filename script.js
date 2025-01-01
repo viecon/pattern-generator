@@ -57,7 +57,7 @@ function generateASCII() {
     const cells = document.querySelectorAll('#grid div');
 
     for (let i = 0; i < 8; i++) {
-        let row = '';
+        let row = '  ';
         for (let j = 0; j < x - 1; j++) {
             const cell = cells[i * x + j];
             row += cell.classList.contains('active') ? '1, ' : '0, ';
