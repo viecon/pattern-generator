@@ -8,7 +8,9 @@ let oldX = 32; // Default value
 grid.addEventListener("mousedown", () => (isMouseDown = true));
 grid.addEventListener("mouseup", () => (isMouseDown = false));
 grid.addEventListener("mouseleave", () => (isMouseDown = false));
-
+grid.addEventListener("dragstart", (event) => {
+  event.preventDefault();
+});
 // Generate Grid Function
 function generateGrid() {
   let x = parseInt(xInput.value, 10);
@@ -29,10 +31,6 @@ function generateGrid() {
       if (j < oldX && oldGridState[i * oldX + j]) {
         cell.classList.add("active");
       }
-      // Toggle on click
-      //cell.addEventListener("click", () => {
-      //  cell.classList.toggle("active");
-      //});
       cell.addEventListener("mousedown", () => {
         cell.classList.toggle("active");
       });

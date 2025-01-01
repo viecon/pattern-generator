@@ -4,6 +4,19 @@
   gap: 10px;
 }
 
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  border: 2px solid black;
+  padding: 10px;
+  max-width: 90vw;
+  max-height: 80vh;
+  margin-top: 10px;
+}
+
 .grid {
   display: grid;
   gap: 2px;
@@ -16,6 +29,9 @@
   height: 50px;
   border: 1px solid black;
   background-color: white;
+  user-select: none; /* Prevent text selection */
+  -webkit-user-drag: none; /* Prevent drag on Safari */
+  -webkit-user-select: none; /* Older Safari versions */
 }
 
 .grid div.active {
