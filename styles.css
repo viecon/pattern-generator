@@ -221,3 +221,33 @@ h2 {
 .copy-notification.error {
   background-color: #f44336;
 }
+.footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.github-link svg {
+  width: 24px;
+  height: 24px;
+  fill: #333;
+  transition: fill 0.3s ease;
+}
+
+.github-link:hover svg {
+  fill: #6a82fb;
+}
+
+.github-link:hover {
+  color: #6a82fb;
+}
