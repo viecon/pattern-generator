@@ -31,8 +31,6 @@ function generateGrid() {
   grid.innerHTML = ""; // Clear the grid
   grid.style.gridTemplateColumns = `repeat(${x}, 1fr)`;
   grid.style.gridTemplateRows = `repeat(8, 1fr)`;
-  console.log(oldGridState);
-  console.log(oldX);
   const gapSize = xValue > 20 ? "2px" : xValue > 10 ? "4px" : "6px";
   grid.style.gap = gapSize;
   for (let i = 0; i < 8; i++) {
