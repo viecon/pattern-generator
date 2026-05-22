@@ -1,1 +1,1 @@
-[viecon.github.io/pattern-generator](https://viecon.github.io/pattern-generator/)
+Website: https://pattern-generator.viecon.site/
